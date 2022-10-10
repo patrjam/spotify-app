@@ -10,5 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd client/
+      - run: ls -a
       - run: yarn --frozen-lockfile
       - run: yarn lint
