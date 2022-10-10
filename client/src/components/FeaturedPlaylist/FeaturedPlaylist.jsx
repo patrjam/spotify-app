@@ -1,7 +1,7 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import { PlaylistCard } from "../PlaylistCard/PlaylistCard";
-import { FEATURED_PLAYLIST } from "../../queries/featured-playlist";
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { PlaylistCard } from '../PlaylistCard/PlaylistCard';
+import { FEATURED_PLAYLIST } from '../../queries/featured-playlist';
 
 export const FeaturedPlaylist = () => {
   const { loading, error, data } = useQuery(FEATURED_PLAYLIST);
@@ -9,7 +9,7 @@ export const FeaturedPlaylist = () => {
   return (
     <div>
       <h1>Playlists</h1>
-      {data?.featuredPlaylists?.playlists.items.map((playlist, index) => (
+      {data?.featuredPlaylists.playlists.items.filter(i => i !== null).map((playlist, index) => (
         <div key={index}>
           <PlaylistCard
             keyId={playlist.id}

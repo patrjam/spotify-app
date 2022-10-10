@@ -1,0 +1,18 @@
+.user-card {
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgb(0 0 0 / 20%);
+  overflow: hidden;
+  width: 300px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 10px;
+}
+
+.user-img {
+  border-radius: 50%;
+}

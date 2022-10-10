@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { SearchForItem } from "../SearchForItem/SearchForItem";
-import "./styles.css";
+import React, { useState } from 'react';
+import { SearchForItem } from '../SearchForItem/SearchForItem';
+import './styles.css';
 
 export const SearchTrack = () => {
-  const [searchedSong, setSearchedSong] = useState("");
+  const [searchedSong, setSearchedSong] = useState('');
 
   const eventChange = (event) => {
     const searchedValue = event.target.value;
@@ -11,13 +11,16 @@ export const SearchTrack = () => {
   };
   return (
     <div>
-      <h1>Search song</h1>
-      <input
-        className="searchedInput"
-        placeholder="Search your track"
-        onChange={eventChange}
-      />
-      <SearchForItem trackName={searchedSong} />
+      <br />
+      <div>
+        {' '}
+        <input
+          className="searched-input"
+          placeholder="Search your track..."
+          onChange={eventChange}
+        />
+        <SearchForItem trackName={searchedSong} />
+      </div>
     </div>
   );
 };

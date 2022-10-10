@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     featuredPlaylists: FeaturedPlaylists
     searchForItem(trackName: String): SearchForItem
+    currentUser: User
   }
 
   type SearchForItem {
@@ -95,6 +96,22 @@ const typeDefs = gql`
   type FeaturedPlaylists {
     message: String
     playlists: Playlist
+  }
+
+  type User {
+    display_name: String
+    external_urls: ExternalUrls
+    followers: Followers
+    href: String
+    id: ID
+    images: [Images]
+    type: String
+    uri: String
+  }
+
+  type Followers {
+    href: String
+    total: Int
   }
 `;
 

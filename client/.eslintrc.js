@@ -6,7 +6,7 @@ module.exports = {
         'import',
         'jest',
         'no-instanceof',
-        'react'
+        'eslint-plugin-react',
     ],
     env: {
         es6: true
