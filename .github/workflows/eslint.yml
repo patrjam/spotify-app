@@ -9,7 +9,4 @@ jobs:
     container: 'node:lts-buster'
     steps:
       - uses: actions/checkout@v2
-      - run: cd client
-      - run: ls -a
-      - run: yarn --frozen-lockfile
       - run: cd client && yarn --frozen-lockfile && yarn lint
