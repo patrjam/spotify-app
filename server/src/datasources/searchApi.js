@@ -7,9 +7,9 @@ class SearchAPI extends RESTDataSource {
     this.baseURL = "https://api.spotify.com/";
   }
 
-  getFeaturedPlaylists() {
+  myCustomGet(endpoint) {
     return this.get(
-      `v1/browse/featured-playlists`,
+      `${endpoint}`,
       {},
       {
         headers: {
@@ -19,6 +19,14 @@ class SearchAPI extends RESTDataSource {
         },
       }
     );
+  }
+
+  getFeaturedPlaylists() {
+    return this.myCustomGet(`v1/browse/featured-playlists`);
+  }
+
+  getSearchForItem(trackName) {
+    return this.myCustomGet(`v1/search?q=${trackName}&type=track`);
   }
 }
 

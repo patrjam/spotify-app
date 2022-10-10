@@ -1,0 +1,14 @@
+.searchedInput {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  position: relative;
+  z-index: 11;
+  font-size: 42px;
+  height: auto;
+  padding: 0;
+  width: 600px;
+}

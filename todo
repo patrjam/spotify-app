@@ -1,6 +1,4 @@
-- add unified Card component
 - add auto refreshing Spotify token
-- add new page with search input
 - add asc/desc logic
 - add documentation
 - add simple diagram from data (not specified)

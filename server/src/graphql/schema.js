@@ -3,6 +3,64 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   type Query {
     featuredPlaylists: FeaturedPlaylists
+    searchForItem(trackName: String): SearchForItem
+  }
+
+  type SearchForItem {
+    tracks: SearchedTracks
+  }
+
+  type SearchedTracks {
+    href: String
+    items: [TrackItems]
+  }
+
+  type TrackItems {
+    album: Album
+    artists: [Artists]
+    disc_number: Int
+    explicit: Boolean
+    duration_ms: Int
+    external_ids: ExternalIds
+    external_urls: ExternalUrls
+    href: String
+    id: String
+    is_local: Boolean
+    name: String
+    popularity: Int
+    preview_url: String
+    track_number: Int
+    type: String
+    uri: String
+  }
+
+  type Album {
+    album_type: String
+    artists: [Artists]
+    available_markets: [String]
+    external_urls: ExternalUrls
+    href: String
+    id: String
+    images: [Images]
+    name: String
+    release_date: Int
+    release_day_precision: String
+    total_tracks: Int
+    type: String
+    uri: String
+  }
+
+  type Artists {
+    external_urls: ExternalUrls
+    href: String
+    id: ID
+    name: String
+    type: String
+    uri: String
+  }
+
+  type ExternalIds {
+    isrc: String
   }
 
   type Tracks {
@@ -19,7 +77,7 @@ const typeDefs = gql`
     width: Int
   }
 
-  type Items {
+  type PlaylistItems {
     id: ID
     collaborative: Boolean
     description: String
@@ -31,7 +89,7 @@ const typeDefs = gql`
 
   type Playlist {
     href: String
-    items: [Items]
+    items: [PlaylistItems]
   }
 
   type FeaturedPlaylists {
