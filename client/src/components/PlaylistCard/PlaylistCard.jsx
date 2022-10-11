@@ -1,5 +1,5 @@
-import React from "react";
-import { ReactComponent as Logo } from "../../assets/play-button.svg";
+import React from 'react';
+import { ReactComponent as Logo } from '../../assets/play-button.svg';
 import './style.css'
 
 export const PlaylistCard = ({

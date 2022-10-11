@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { Howl, Howler } from "howler";
-import "./styles.css";
-import { TrackItemCard } from "../TrackItemCard/TrackItemCard";
-import { SEARCH_TRACK } from "../../queries/search-track";
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { Howl, Howler } from 'howler';
+import './styles.css';
+import { TrackItemCard } from '../TrackItemCard/TrackItemCard';
+import { SEARCH_TRACK } from '../../queries/search-track';
 
 export const SearchForItem = ({ trackName }) => {
   const { loading, error, data } = useQuery(SEARCH_TRACK, {
