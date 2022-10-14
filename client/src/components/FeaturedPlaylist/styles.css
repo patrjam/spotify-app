@@ -1,0 +1,10 @@
+  .sort-btn {
+    position: absolute;
+    background-color: transparent;
+    border: 5px;
+    height: 26px;
+    width: 24px;
+    cursor: pointer;
+    z-index: 99;
+    right: 35%;
+  }
