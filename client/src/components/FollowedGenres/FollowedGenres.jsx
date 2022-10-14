@@ -3,13 +3,15 @@ import { useQuery } from '@apollo/client';
 import { FOLLOWED_GENRES } from '../../queries/followed-genres';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Loading } from '../Loading/Loading';
+import { Error } from '../Error/Error';
 
 export const FollowedGenres = () => {
   const { loading, error, data } = useQuery(FOLLOWED_GENRES);
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>{error.message}</div>;
+  if (loading) return <Loading />;
+  if (error) return <Error message={error.message} />;
 
   const genres = data?.followedArtists.artists.items
     .filter((i) => i !== null)
@@ -53,7 +55,7 @@ export const FollowedGenres = () => {
 
   return (
     <div>
-        <h1>Followed genres</h1>
+      <h1>Followed genres</h1>
       <Doughnut data={formattedData} />
     </div>
   );

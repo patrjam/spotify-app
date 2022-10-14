@@ -7,14 +7,16 @@ import Asc from '../../assets/asc.svg';
 import Desc from '../../assets/desc.svg';
 import Sort from '../../assets/sort.svg';
 import './styles.css';
+import { Loading } from '../Loading/Loading';
+import { Error } from '../Error/Error';
 
 export const FeaturedPlaylist = () => {
   const { loading, error, data } = useQuery(FEATURED_PLAYLIST);
   const [sortedData, setSortedData] = useState(undefined);
   const [orderBy, setOrderBy] = useState(0);
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>{error.message}</div>;
+  if (loading) return <Loading />;
+  if (error) return <Error message={error.message} />;
 
   const playlists = data?.featuredPlaylists.playlists.items.filter(
     (i) => i !== null
@@ -42,7 +44,7 @@ export const FeaturedPlaylist = () => {
   };
 
   let button;
-  
+
   if (orderBy === 1) {
     button = Asc;
   } else if (orderBy === 2) {
@@ -56,8 +58,7 @@ export const FeaturedPlaylist = () => {
         className={'sort-btn'}
         onClick={onClick}
         style={{ backgroundImage: `url(${button})` }}
-      >
-      </button>
+      ></button>
       {playlists?.map((playlist, index) => (
         <div key={index}>
           <PlaylistCard
