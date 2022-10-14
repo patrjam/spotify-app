@@ -1,0 +1,11 @@
+.error {
+  position: relative;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #e5b700;
+  color: black;
+  background-color: #eac532;
+  transition: all 0.2s;
+}
