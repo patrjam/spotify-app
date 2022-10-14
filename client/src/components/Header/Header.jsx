@@ -20,6 +20,9 @@ export const Header = () => (
         <Link className="styled-option" to={appRoutesList.searchTrackUrl}>
           SEARCH SONG
         </Link>
+        <Link className="styled-option" to={appRoutesList.followedGenresUrl}>
+          FOLLOWED GENRES
+        </Link>
       </div>
     </div>
   </div>

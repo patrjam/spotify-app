@@ -3,6 +3,7 @@ const typeDefs = require("./graphql/schema");
 const resolvers = require("./graphql/resolvers");
 const SearchAPI = require("./datasources/searchApi");
 const UserAPI = require("./datasources/userApi");
+const FollowedArtistsAPI = require('./datasources/followedArtistsApi')
 
 const server = new ApolloServer({
   typeDefs,
@@ -11,6 +12,7 @@ const server = new ApolloServer({
     return {
       searchAPI: new SearchAPI(),
       userAPI: new UserAPI(),
+      followedArtistsAPI: new FollowedArtistsAPI(),
     };
   },
 });

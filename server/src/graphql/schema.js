@@ -5,6 +5,28 @@ const typeDefs = gql`
     featuredPlaylists: FeaturedPlaylists
     searchForItem(trackName: String): SearchForItem
     currentUser: User
+    followedArtists: FollowedArtists
+  }
+
+  type FollowedArtists {
+    artists: FArtists
+  }
+
+  type FArtists {
+    items: [ArtistsItems]
+  }
+
+  type ArtistsItems {
+    external_urls: ExternalUrls
+    followers: Followers
+    genres: [String]
+    href: String
+    id: ID
+    images: [Images]
+    name: String
+    popularity: Int
+    type: String
+    uri: String
   }
 
   type SearchForItem {

@@ -9,6 +9,9 @@ const resolvers = {
     currentUser: (_, __, { dataSources }) => {
       return dataSources.userAPI.getCurrentUser();
     },
+    followedArtists: (_, __, { dataSources }) => {
+      return dataSources.followedArtistsAPI.getFollowedArtists();
+    },
   },
 };
 

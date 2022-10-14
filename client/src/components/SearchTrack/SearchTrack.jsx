@@ -11,9 +11,10 @@ export const SearchTrack = () => {
   };
   return (
     <div>
-      <br />
       <div>
-        {' '}
+        <h1>Search</h1>
+        <br/>
+        <br/>
         <input
           className="searched-input"
           placeholder="Search your track..."
