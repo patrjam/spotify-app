@@ -1,11 +1,9 @@
-# Client side of Spotify app
+# Server side of Spotify app
 
 ## Prerequisites
 
 - installed `nodejs`
 - installed `yarn`
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## First steps
 
@@ -18,4 +16,4 @@ for installing dependencies
 for locally development
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:4000](http://localhost:4000) to view it in your browser and connect to Apollo GraphQl.
