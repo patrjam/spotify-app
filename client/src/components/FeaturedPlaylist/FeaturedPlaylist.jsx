@@ -1,62 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
 import { PlaylistCard } from '../PlaylistCard/PlaylistCard';
 import { FEATURED_PLAYLIST } from '../../queries/featured-playlist';
+import { sortName } from '../../customFunctions/sortName';
+import Asc from '../../assets/asc.svg';
+import Desc from '../../assets/desc.svg';
+import Sort from '../../assets/sort.svg';
+import './styles.css';
 
 export const FeaturedPlaylist = () => {
-  //const { loading, error, data } = useQuery(FEATURED_PLAYLIST);
-  const [getPlaylists, {loading, error, data, called} ] = useLazyQuery(FEATURED_PLAYLIST);
-  const [sortedData, setSortedData] = useState(undefined)
-
-  console.log('LOADING: ',loading, 'ERROR: ',  error, 'DATA: ',  data, 'CALLED: ',called)
-  
+  const { loading, error, data } = useQuery(FEATURED_PLAYLIST);
+  const [sortedData, setSortedData] = useState(undefined);
+  const [orderBy, setOrderBy] = useState(0);
 
   if (loading) return <div>Loading</div>;
   if (error) return <div>{error.message}</div>;
- // console.log(await getPlaylists(), 'xx_')
 
- if (sortedData === undefined){
-  console.log('som v undefined')
-  getPlaylists()
-  if ( data) {
-    setSortedData(data?.featuredPlaylists.playlists.items.filter(i => i !== null))
-   }
- } 
-console.log('DATA: ',data, 'SORTEDDATA', sortedData)
+  const playlists = data?.featuredPlaylists.playlists.items.filter(
+    (i) => i !== null
+  );
 
-
-  const sortPlaylistsName = (sortedRows) => {
-     return sortedRows.sort((a, b) => {
-      const nameA = a.name.toUpperCase()
-      const nameB = b.name.toUpperCase()
-
-      if (nameA<nameB) {
-        console.log('nameA<nameB')
-        return -1
-      }
-      if (nameA>nameB){
-        console.log('nameA>nameB')
-        return 1
-      }
-
-      return 0
-    }) 
+  if (sortedData) {
+    if (orderBy == 1) {
+      sortName(playlists, false);
+    }
+    if (orderBy == 2) {
+      sortName(playlists, true);
+    }
   }
+
   const onClick = () => {
-const playlists = [...sortPlaylistsName(sortedData)]
-    setSortedData( playlists) 
+    setSortedData(true);
+    setOrderBy(1);
 
-    
-  }
+    if (orderBy === 1) {
+      return setOrderBy(2);
+    }
+    if (orderBy === 2) {
+      return setOrderBy(0);
+    }
+  };
 
+  let button;
+  
+  if (orderBy === 1) {
+    button = Asc;
+  } else if (orderBy === 2) {
+    button = Desc;
+  } else button = Sort;
 
   return (
     <div>
       <h1>Playlists</h1>
-      <button onClick={onClick}>SORT</button>
-      <button onClick={onClick}>SORT_</button>
-      <div>{new Date().getTime()}</div>
-      {sortedData?.map((playlist, index) => (
+      <button
+        className={'sort-btn'}
+        onClick={onClick}
+        style={{ backgroundImage: `url(${button})` }}
+      >
+      </button>
+      {playlists?.map((playlist, index) => (
         <div key={index}>
           <PlaylistCard
             keyId={playlist.id}
@@ -66,7 +68,6 @@ const playlists = [...sortPlaylistsName(sortedData)]
             externalUrl={playlist.external_urls.spotify}
           />
         </div>
-        
       ))}
     </div>
   );

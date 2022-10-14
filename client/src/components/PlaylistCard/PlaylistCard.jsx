@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as Logo } from '../../assets/play-button.svg';
-import './style.css'
+import './styles.css'
 
 export const PlaylistCard = ({
   keyId,
