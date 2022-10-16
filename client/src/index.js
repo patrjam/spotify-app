@@ -2,11 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './App';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter } from 'react-router-dom';
 
+const authLink = setContext(() => {
+  const token = localStorage.getItem('spotifyToken');
+  return {
+    headers: {
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  link: authLink.concat(new HttpLink({ uri: 'http://localhost:4000' })),
   cache: new InMemoryCache(),
 });
 
@@ -20,4 +35,3 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
-

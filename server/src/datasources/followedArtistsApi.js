@@ -7,7 +7,7 @@ class FollowedArtistsAPI extends RESTDataSource {
     this.baseURL = "https://api.spotify.com/";
   }
 
-  myCustomGet(endpoint) {
+  myCustomGet(endpoint, authorization) {
     return this.get(
       `${endpoint}`,
       {},
@@ -15,16 +15,15 @@ class FollowedArtistsAPI extends RESTDataSource {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: process.env.BEARER_TOKEN,
+          Authorization: authorization,
         },
       }
     );
   }
 
-  getFollowedArtists() {
-    return this.myCustomGet(`v1/me/following?type=artist`);
+  getFollowedArtists(authorization) {
+    return this.myCustomGet(`v1/me/following?type=artist`, authorization);
   }
-
 }
 
 module.exports = FollowedArtistsAPI;
