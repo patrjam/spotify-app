@@ -7,7 +7,7 @@ class SearchAPI extends RESTDataSource {
     this.baseURL = "https://api.spotify.com/";
   }
 
-  myCustomGet(endpoint) {
+  myCustomGet(endpoint, authorization) {
     return this.get(
       `${endpoint}`,
       {},
@@ -15,18 +15,21 @@ class SearchAPI extends RESTDataSource {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: process.env.BEARER_TOKEN,
+          Authorization: authorization,
         },
       }
     );
   }
 
-  getFeaturedPlaylists() {
-    return this.myCustomGet(`v1/browse/featured-playlists`);
+  getFeaturedPlaylists(authorization) {
+    return this.myCustomGet(`v1/browse/featured-playlists`, authorization);
   }
 
-  getSearchForItem(trackName) {
-    return this.myCustomGet(`v1/search?q=${trackName}&type=track`);
+  getSearchForItem(authorization, trackName) {
+    return this.myCustomGet(
+      `v1/search?q=${trackName}&type=track`,
+      authorization
+    );
   }
 }
 

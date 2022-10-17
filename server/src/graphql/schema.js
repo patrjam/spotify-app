@@ -6,6 +6,11 @@ const typeDefs = gql`
     searchForItem(trackName: String): SearchForItem
     currentUser: User
     followedArtists: FollowedArtists
+    authorize(code: String, redirect_uri: String): Authorize
+  }
+
+  type Authorize {
+    access_token: String
   }
 
   type FollowedArtists {

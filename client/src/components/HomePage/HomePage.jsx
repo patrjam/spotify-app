@@ -6,12 +6,12 @@ import './styles.css';
 
 export const HomePage = () => {
   const { error, loading, data } = useQuery(CURRENT_USER);
-
   if (loading) return <Loading />;
-  if (error) return <Error message={error.message} />;
+  if (error) return <Error message={error.message} error={error} />;
 
   return (
     <div>
+      {error}
       <h1>Logged as:</h1>
       <div className={'user-card'}>
         <h2>{data?.currentUser.display_name}</h2>

@@ -1,5 +1,5 @@
-const { RESTDataSource } = require('apollo-datasource-rest');
-require('dotenv').config();
+const { RESTDataSource } = require("apollo-datasource-rest");
+require("dotenv").config();
 
 class UserAPI extends RESTDataSource {
   constructor() {
@@ -7,7 +7,7 @@ class UserAPI extends RESTDataSource {
     this.baseURL = "https://api.spotify.com/";
   }
 
-  myCustomGet(endpoint) {
+  myCustomGet(endpoint, authorization) {
     return this.get(
       `${endpoint}`,
       {},
@@ -15,14 +15,14 @@ class UserAPI extends RESTDataSource {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: process.env.BEARER_TOKEN,
+          Authorization: authorization,
         },
       }
     );
   }
 
-  getCurrentUser() {
-    return this.myCustomGet(`v1/me`);
+  getCurrentUser(authorization) {
+    return this.myCustomGet(`v1/me`, authorization);
   }
 }
 

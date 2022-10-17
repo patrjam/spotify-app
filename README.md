@@ -1,28 +1,63 @@
 # Spotify app
 This repository was created as a toy learning project for technologies as a React, Apollo GraphQL & ChartJS. Project also uses Spotify API for server in own defined schema.
 
+# Dev requirements
+- installed `yarn`
+- installed `node` with minimal version `16.X.X`
+
 # Used endpoints
 - [https://api.spotify.com/v1/me](https://api.spotify.com/v1/me) for app route `/`
 - [https://api.spotify.com/v1/browse/featured-playlists](https://api.spotify.com/v1/browse/featured-playlists) for app route `/playlists`
 - [https://api.spotify.com/v1/search](https://api.spotify.com/v1/search) for app route `/search-track`
 - [https://api.spotify.com/v1/me/following](https://api.spotify.com/v1/me/following) for app route `/followed-genres`
+- [https://accounts.spotify.com/](https://accounts.spotify.com/) for Login to Spotify and return `access_token`
 
 # Fetch data from endpoints
-Connecting to data always needs to be authorized by Oauth token. Token has different roles for different data. In this repository were used 2 types of `Bearer` tokens, which you need to generate.
+Connecting to data always needs to be authorized by Oauth token. Token has different roles for different data. ~~In this repository were used 2 types of `Bearer` tokens, which you need to generate.~~
 
 _Warning_ Token expires after some time.
-## Generate Bearer token
+## ~~Generate Bearer token~~ (deprecated)
 
-For standard endpoints calling, it possible to generate token here:
+~~For standard endpoints calling, it possible to generate token here:~~
 
-[https://developer.spotify.com/console/get-featured-playlists/?country=&locale=&timestamp=&limit=&offset=](https://developer.spotify.com/console/get-featured-playlists/?country=&locale=&timestamp=&limit=&offset=)
+~~[https://developer.spotify.com/console/get-featured-playlists/?country=&locale=&timestamp=&limit=&offset=](https://developer.spotify.com/console/get-featured-playlists/?country=&locale=&timestamp=&limit=&offset=)~~
 
-- Copy token into `.env` file in `/server/root`
-- This token covers app parts: `/`, `/playlists` and `/search-track`
+~~- Copy token into `.env` file in `/server/root`~~
+~~- This token covers app parts: `/`, `/playlists` and `/search-track`~~
 
-For `/followed-genres` is needed to generate token here [https://developer.spotify.com/console/get-following/?type=artist&after=&limit=](https://developer.spotify.com/console/get-following/?type=artist&after=&limit=) and check required scope `user-follow-read`.
+~~For `/followed-genres` is needed to generate token here [https://developer.spotify.com/console/get-following/?type=artist&after=&limit=](https://developer.spotify.com/console/get-following/?type=artist&after=&limit=) and check required scope `user-follow-read`.~~
+
+## Login into app
+- is needed to have generated `CLIENT_ID` and `CLIENT_SECRET` from [https://developer.spotify.com/](https://developer.spotify.com/).
+
+### Generate `CLIENT_ID` & `CLIENT_SECRET`
+- go to [https://developer.spotify.com/dashboard/applications](https://developer.spotify.com/dashboard/applications)
+- create app with button `CREATE AN APP` and fill in mandatory fields
+- copy values of generated `CLIENT_ID` and `CLIENT_SECRET`
+- in edit settings add `Redirect URIs` as `http://localhost:3000/`
+
+#### Server environment variables (secrets)
+- copy file `.env.copy` from `/server/root` and rename it to `.env` 
+- copy values of `CLIENT_ID` and `CLIENT_SECRET` into `.env` file
+
+#### Client environment variables (secrets)
+- copy file `.env.copy` from `/client/root` and rename it to `.env` 
+- copy values of `REACT_APP_CLIENT_ID` into `.env` file (value is the same as `CLIENT_ID`)
+
+_Note:_ On the client side with React, environment variables need to start with prefix `REACT_APP_`.
+
+_Note2:_ Is needed to restart application after adding variable in `.env` file.
+
+_Warning:_ Do not store any secrets (such as private API keys) in your React app!
+
 
 # App final design and implemented functionality
+
+## Login component
+![login](/documentation/screenshots/login.png)
+- called if API returns 401 from the server and user is not authenticated with non expired `access_token`
+- after submit button and login to `spotify.com` as standard user, logged user has generated and saved `access_token` into local storage with key `spotifyToken`
+- if this token expired, user needs to click on `Login to` button again and token is automatically generated again
 
 ## Home page
 ![home](/documentation/screenshots/home.png)

@@ -3,8 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import { FeaturedPlaylist } from './components/FeaturedPlaylist/FeaturedPlaylist';
 import { HomePage } from './components/HomePage/HomePage';
 import { SearchTrack } from './components/SearchTrack/SearchTrack';
+import { SpotifyCallback } from './components/Login/SpotifyCallback';
 import { Header } from './components/Header/Header';
 import { FollowedGenres } from './components/FollowedGenres/FollowedGenres';
+import { Secured } from './components/Secured/Secured';
 
 export const App = () => {
   return (
@@ -13,15 +15,41 @@ export const App = () => {
         {' '}
         <Header />
       </div>
-
-      <div>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/playlists" element={<FeaturedPlaylist />} />
-          <Route path="/search-track" element={<SearchTrack />} />
-          <Route path="/followed-genres" element={<FollowedGenres />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path={'/callback'} element={<SpotifyCallback />} />
+        <Route
+          path={'/'}
+          element={
+            <Secured>
+              <HomePage />
+            </Secured>
+          }
+        />
+        <Route
+          path={'/playlists'}
+          element={
+            <Secured>
+              <FeaturedPlaylist />
+            </Secured>
+          }
+        />
+        <Route
+          path={'/search-track'}
+          element={
+            <Secured>
+              <SearchTrack />
+            </Secured>
+          }
+        />
+        <Route
+          path={'/followed-genres'}
+          element={
+            <Secured>
+              <FollowedGenres />
+            </Secured>
+          }
+        />
+      </Routes>
     </div>
   );
 };
