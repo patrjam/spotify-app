@@ -1,6 +1,10 @@
 # Spotify app
 This repository was created as a toy learning project for technologies as a React, Apollo GraphQL & ChartJS. Project also uses Spotify API for server in own defined schema.
 
+# Dev requirements
+- installed `yarn`
+- installed `node` with minimal version `16.X.X`
+
 # Used endpoints
 - [https://api.spotify.com/v1/me](https://api.spotify.com/v1/me) for app route `/`
 - [https://api.spotify.com/v1/browse/featured-playlists](https://api.spotify.com/v1/browse/featured-playlists) for app route `/playlists`
@@ -32,8 +36,19 @@ _Warning_ Token expires after some time.
 - copy values of generated `CLIENT_ID` and `CLIENT_SECRET`
 - in edit settings add `Redirect URIs` as `http://localhost:3000/`
 
+#### Server environment variables (secrets)
 - copy file `.env.copy` from `/server/root` and rename it to `.env` 
 - copy values of `CLIENT_ID` and `CLIENT_SECRET` into `.env` file
+
+#### Client environment variables (secrets)
+- copy file `.env.copy` from `/client/root` and rename it to `.env` 
+- copy values of `REACT_APP_CLIENT_ID` into `.env` file (value is the same as `CLIENT_ID`)
+
+_Note:_ On the client side with React, environment variables need to start with prefix `REACT_APP_`.
+
+_Note2:_ Is needed to restart application after adding variable in `.env` file.
+
+_Warning:_ Do not store any secrets (such as private API keys) in your React app!
 
 
 # App final design and implemented functionality
