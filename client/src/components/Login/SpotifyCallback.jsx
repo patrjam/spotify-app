@@ -29,5 +29,5 @@ export const SpotifyCallback = () => {
     }
   }
 
-  return <div>No code provided</div>;
+  return <Error message={'No code provided'}/>;
 };
